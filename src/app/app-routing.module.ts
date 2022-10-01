@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import {GithubComponent} from "./github/github.component";
 
 const routes: Routes = [
   {
@@ -10,6 +11,11 @@ const routes: Routes = [
     path: '',
     redirectTo: 'home',
     pathMatch: 'full'
+  },
+  {
+    path: 'github',
+    component: GithubComponent,
+
   },
 ];
 
