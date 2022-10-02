@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      GitHub
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -13,13 +13,23 @@
     </ion-toolbar>
   </ion-header>
 
+
+
   <div id="container">
 
+
+
     <form (ngSubmit)="pesquisa()">
-      <ion-input type="text"
-                 placeholder="Nome do repositório:"
-                 name="nome"
-                 [(ngModel)]="nome"></ion-input>
+
+      <ion-list>
+        <ion-item>
+          <ion-select  [(ngModel)]="linguagem"  name="linguagem" placeholder="Select fruit">
+            <ion-select-option value="c++">C++</ion-select-option>
+            <ion-select-option value="javascript">JavaScript</ion-select-option>
+            <ion-select-option value="java">Java</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
 
       <ion-button type="submit">Enviar</ion-button>
     </form>

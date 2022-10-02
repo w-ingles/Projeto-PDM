@@ -18,7 +18,7 @@ export class GithubRestService {
 
     Observable<Repositorio[]> {
 
-    let params = new HttpParams().set("q", query);
+    let params = new HttpParams().set("q", "language:"+ query +':type:repositories');
 
     return this.httpClient.get<any>(
       this.url + 'search/repositories', { params : params }

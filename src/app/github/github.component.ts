@@ -9,14 +9,15 @@ import {GithubRestService} from "../service/github-rest.service";
 })
 export class GithubComponent implements OnInit {
 
-  private nome : string;
+   private linguagem : string;
 
   private repositorios : Repositorio[] = [];
 
   constructor(private gitHubRestService : GithubRestService) {}
   ngOnInit(){}
   pesquisa() {
-    this.gitHubRestService.pesquisaRepositorios(this.nome)
+    alert(this.linguagem)
+    this.gitHubRestService.pesquisaRepositorios(this.linguagem)
       .subscribe(repositorios => {
           this.repositorios = repositorios;
         },
