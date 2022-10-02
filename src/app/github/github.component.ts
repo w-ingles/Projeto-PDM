@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Repositorio} from "../model/repositorio";
-import {HttpClient} from "@angular/common/http";
+import {GithubRestService} from "../service/github-rest.service";
 
 @Component({
   selector: 'app-github',
@@ -9,8 +9,20 @@ import {HttpClient} from "@angular/common/http";
 })
 export class GithubComponent implements OnInit {
 
-  constructor() { }
+  private nome : string;
 
-  ngOnInit() {}
+  private repositorios : Repositorio[] = [];
+
+  constructor(private gitHubRestService : GithubRestService) {}
+  ngOnInit(){}
+  pesquisa() {
+    this.gitHubRestService.pesquisaRepositorios(this.nome)
+      .subscribe(repositorios => {
+          this.repositorios = repositorios;
+        },
+        erro => { console.log('Erro no componente: ' + erro);
+
+        });
+  }
 
 }
