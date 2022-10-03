@@ -11,15 +11,16 @@ export class GithubComponent implements OnInit {
 
    private linguagem : string;
 
-  private repositorios : Repositorio[] = [];
+  private repositorios : Repositorio[];
 
   constructor(private gitHubRestService : GithubRestService) {}
   ngOnInit(){}
   pesquisa() {
-    alert(this.linguagem)
+
     this.gitHubRestService.pesquisaRepositorios(this.linguagem)
       .subscribe(repositorios => {
           this.repositorios = repositorios;
+          console.log(repositorios);
         },
         erro => { console.log('Erro no componente: ' + erro);
 

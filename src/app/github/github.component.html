@@ -23,10 +23,11 @@
 
       <ion-list>
         <ion-item>
-          <ion-select  [(ngModel)]="linguagem"  name="linguagem" placeholder="Select fruit">
+          <ion-select  [(ngModel)]="linguagem"  name="linguagem" placeholder="Linguagem">
             <ion-select-option value="c++">C++</ion-select-option>
             <ion-select-option value="javascript">JavaScript</ion-select-option>
             <ion-select-option value="java">Java</ion-select-option>
+            <ion-select-option value="html">Html</ion-select-option>
           </ion-select>
         </ion-item>
       </ion-list>
@@ -36,7 +37,7 @@
 
     <ion-list *ngFor="let r of repositorios; let i = index" no-lines>
       <ion-item>
-        ID: {{ r.id }} -Nome: {{ r.name }} -URL: {{ r.html_url }}
+        ID: {{ i }} -Quantidade: {{ r.name }} -URL: {{ r.html_url }}
       </ion-item>
     </ion-list>
   </div>
