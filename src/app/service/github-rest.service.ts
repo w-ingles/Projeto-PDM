@@ -12,7 +12,7 @@ export class GithubRestService {
 
   private url : string = "https://api.github.com/";
 
-  private rank : Repositorio
+  private rank : Repositorio [] = []
 
   constructor(private httpClient : HttpClient) {}
 
@@ -20,19 +20,25 @@ export class GithubRestService {
 
     Observable<Repositorio[]> {
 
-    let params = new HttpParams().set("q",  query);
+    let params = new HttpParams().set("q", `language:${query}` );
 
     return this.httpClient.get<any>(
       this.url + 'search/repositories', { params : params }
     ).pipe(map(resposta => {
-        if (resposta && resposta.total_count)
+        if (resposta && resposta.total_count){
+          let resultado = {
+            total_count : resposta.total_count,
+            linguagem: query
+          }
+          this.rank.push(resultado)
+          console.log(this.rank);
+          return this.rank
+        }
 
-
-
-
-          return resposta.total_count;
-        else
+        else{
           return [];
+        }
+
       }),
       catchError(error => {
         console.log('Erro ao fazer a pesquisa: ' + error);
@@ -41,6 +47,8 @@ export class GithubRestService {
 
     );
   }
+
+
 
 
 }

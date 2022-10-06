@@ -27,4 +27,8 @@ export class GithubComponent implements OnInit {
         });
   }
 
+  limpar(){
+    this.repositorios = []
+  }
+
 }
