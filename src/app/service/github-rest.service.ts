@@ -14,28 +14,37 @@ export class GithubRestService {
 
   private rank : Repositorio [] = []
 
-  constructor(private httpClient : HttpClient) {}
+  constructor(private httpClient : HttpClient) {
+  }
 
-  pesquisaRepositorios(query : string) :
-
-    Observable<Repositorio[]> {
+  pesquisaRepositorios(query : string): Observable<Repositorio[]> {
 
     let params = new HttpParams().set("q", `language:${query}` );
-
     return this.httpClient.get<any>(
       this.url + 'search/repositories', { params : params }
     ).pipe(map(resposta => {
+      console.log("Query..: " + query)
+      //Se já tiver no Array e o array já tiver alguma coisa
+      if(this.rank.length > 0) {
+        console.log("Linguagem: " + query)
+        var isInArray = this.rank.some(function (el): Boolean {
+          console.log("Nome do elemento..: " + el.linguagem)
+          return el.linguagem === query;
+        });
+      }
+      console.log("Está no array? " + isInArray)
+      if(isInArray) {return this.rank;} //Retorna somente o Array
+      console.log("Se não tiver no array")
+        //Se tiver resposta
+      console.log("Resposta..: " + resposta && resposta.total_count)
         if (resposta && resposta.total_count){
           let resultado = {
             total_count : resposta.total_count,
             linguagem: query
           }
           this.rank.push(resultado)
-          console.log(this.rank);
           return this.rank
-        }
-
-        else{
+        } else{
           return [];
         }
 
@@ -48,6 +57,10 @@ export class GithubRestService {
     );
   }
 
+  removerRepositorios(){
+    this.rank = [];
+    return this.rank
+  }
 
 
 

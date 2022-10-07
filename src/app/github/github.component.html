@@ -9,7 +9,7 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
+      <ion-title size="large">GitHub Ranking</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -41,7 +41,7 @@
     <ion-list *ngFor="let r of repositorios; let i = index" no-lines>
       <ion-item>
 
-        <ion-badge slot="start">{{ i }}</ion-badge>
+        <ion-badge slot="start">{{ i+1 }}</ion-badge>
         <ion-badge slot="end">{{ r.total_count }}</ion-badge>
         <ion-label>{{ r.linguagem }}</ion-label>
       </ion-item>
